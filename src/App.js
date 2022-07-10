@@ -1,11 +1,10 @@
-import Sing_in from './components/Sign_in';
+import LoginPage from './components/LoginPage/LoginPage';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      12
-      <Sing_in/>
+      <LoginPage/>
     </div>
   );
 }
