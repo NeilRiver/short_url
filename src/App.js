@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <AlertPopUp/>
       <LoginPage/>
-      <button onClick={()=> fetch('https://short-url-back-end.herokuapp.com/delete_by_range_id')}>Delete form DB all users</button>
+      <button onClick={()=> fetch('http://localhost:3001/delete_by_range_id')}>Delete form DB all users</button>
     </div>
   );
 }
