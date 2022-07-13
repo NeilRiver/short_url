@@ -10,7 +10,7 @@ export default function SingButtons(prop) {
 
     const create_object_login = (login, password, sing_up) => {
 
-        fetch(`http://localhost:3001/${(sing_up) ? "login" : "create_user"}`, {
+        fetch(`https://short-url-back-end.herokuapp.com/${(sing_up) ? "login" : "create_user"}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
