@@ -1,21 +1,32 @@
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
+import { useSelector, useDispatch } from 'react-redux'
+import { addEntriesAsync } from '../../../redux/slices/headAppSlice'
 
 export default function SingButtons(prop) {
+    const notify = useSelector(state => state.app.notify)
+    const dispatch = useDispatch()
 
     const create_object_login = (login, password, sing_up) => {
-        sing_up
-            ?
-            alert(`LOGIN\nlogin: ${login}\npassword: ${password}`)
-            :
-            alert(`CREATE\nlogin: ${login}\npassword: ${password}`)
+
+        fetch(`http://localhost:3001/${(sing_up) ? "login" : "create_user"}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "email": login,
+                "password": password
+            })
+        }).then((data) => data.json()).then(object => dispatch(addEntriesAsync(object)))
     }
 
     return (
         <Grid container alignItems="center" direction="column">
 
             <Button
+                disabled={notify.length >= 1 ? true : false}
                 type="submit"
                 variant="contained"
                 sx={{ mt: 2, mb: 1, width: 200 }}
