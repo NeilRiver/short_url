@@ -19,13 +19,11 @@ export const headAppSlice = createSlice({
     }
 })
 
-export const addEntriesAsync = (object) => (dispatch) => {
-    dispatch(showBackdrop())
+export const addEntriesAsync = (object) =>  (dispatch) => {
+
     dispatch(addEntries(object))
     dispatch(showBackdrop())
-    setTimeout(() => {
-        dispatch(dropEntries(object.id))
-    }, 4000)
+    setTimeout(() => dispatch(dropEntries(object.id)), 3000)
 
 }
 

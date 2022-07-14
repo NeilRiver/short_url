@@ -2,15 +2,16 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import { useSelector, useDispatch } from 'react-redux'
-import { addEntriesAsync } from '../../../redux/slices/headAppSlice'
+import { addEntriesAsync, showBackdrop } from '../../../redux/slices/headAppSlice'
 
 export default function SingButtons(prop) {
     const notify = useSelector(state => state.app.notify)
     const dispatch = useDispatch()
 
-    const create_object_login = (login, password, sing_up) => {
+    const create_object_login = async (login, password, sing_up) => {
 
-        fetch(`https://short-url-back-end.herokuapp.com/${(sing_up) ? "login" : "create_user"}`, {
+        dispatch(showBackdrop())
+        let response = await fetch(`https://short-url-back-end.herokuapp.com/${(sing_up) ? "login" : "create_user"}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -19,7 +20,9 @@ export default function SingButtons(prop) {
                 "email": login,
                 "password": password
             })
-        }).then((data) => data.json()).then(object => dispatch(addEntriesAsync(object)))
+        })
+        let data = await response.json();
+        dispatch(addEntriesAsync(data))
     }
 
     return (
