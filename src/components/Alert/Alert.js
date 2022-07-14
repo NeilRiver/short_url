@@ -5,7 +5,6 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export default function AlertPopUp(prop) {
     const notify = useSelector(state => state.app.notify)
-    const { v4: uuidv4 } = require('uuid');
     const nodeRef = useRef(null)
     return (
         <TransitionGroup className="todo-list">
