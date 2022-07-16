@@ -5,12 +5,12 @@ import Paper from '@mui/material/Paper';
 
 import LoginField from './Login/Login';
 import LogoField from './Logo/Logo';
-import SingButtons from './Sign_Buttons/Sing_Buttons';
+// import SingButtons from './Sign_Buttons/Sing_Buttons';
 
 export default function LoginPage() {
     const [sing_up, setSignUp] = useState(true)
 
-    const [login, setLogin] = useState("test")
+    const [email, setEmail] = useState("test")
     const [password, setPassword] = useState("test")
 
     return (
@@ -28,16 +28,16 @@ export default function LoginPage() {
             >
                 <LogoField sing_up={sing_up} />
                 <LoginField sing_up={sing_up}
-                    login={login}
+                    email={email}
                     password={password}
-                    setLogin={setLogin}
+                    setEmail={setEmail}
                     setPassword={setPassword} />
-                <SingButtons sing_up={sing_up}
-                    login={login}
+                {/* <SingButtons sing_up={sing_up}
+                    email={email}
                     password={password}
                     setSignUp={setSignUp}
-                    setLogin={setLogin}
-                    setPassword={setPassword} />
+                    setEmail={setEmail}
+                    setPassword={setPassword} /> */}
 
             </Paper>
         </Grid>
