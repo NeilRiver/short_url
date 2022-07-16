@@ -4,7 +4,7 @@ export const headAppSlice = createSlice({
     name: 'app',
     initialState: {
         notify: [],
-        sign_up: false,
+        sign_up: true,
         backdrop: false
     },
     reducers: {
