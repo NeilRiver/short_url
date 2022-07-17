@@ -7,38 +7,39 @@ import Password_SignUn from './Password_Input/Password_SignUn';
 import Sign_in_up from './Buttons/Sign_in_up';
 
 import { useForm } from "react-hook-form";
-import { useSelector } from 'react-redux';
-
-// const create_object_login = async (login, password, sing_up) => {
-
-//     dispatch(showBackdrop())
-//     let response = await fetch(`https://short-url-back-end.herokuapp.com/${(sing_up) ? "login" : "create_user"}`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             "email": login,
-//             "password": password
-//         })
-//     })
-//     let data = await response.json();
-//     dispatch(addEntriesAsync(data))
-// }
+import { useSelector, useDispatch } from 'react-redux';
+import { addEntriesAsync, showBackdrop } from 'redux/slices/headAppSlice';
 
 export default function Login(prop) {
+
+    const create_object_login = async (form_data) => {
+        dispatch(showBackdrop())
+        let response = await fetch(`http://localhost:3001/${(sign_up) ? "login" : "create_user"}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "email": sign_up ? form_data.email : form_data.email_signup,
+                "password": sign_up ? form_data.password : form_data.password_signup
+            })
+        })
+        let data = await response.json();
+        dispatch(addEntriesAsync(data))
+    }
+
     const sign_up = useSelector(state => state.app.sign_up)
+    const dispatch = useDispatch()
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onChange"
     });
-    const onSubmit = data => sign_up ? alert('логин') : alert('регистрация');
 
     return (
         <Grid
             container
             component="form"
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(create_object_login)}
             spacing={2} justifyContent="center">
 
             {sign_up ?
@@ -53,7 +54,7 @@ export default function Login(prop) {
                 </>
             }
 
-            <Sign_in_up sign_up={sign_up}/>
+            <Sign_in_up sign_up={sign_up} />
         </Grid>
     );
 }
