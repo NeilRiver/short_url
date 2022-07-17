@@ -1,17 +1,10 @@
-import { useState } from 'react';
-
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
-import LoginField from './Login/Login';
-import LogoField from './Logo/Logo';
-// import SingButtons from './Sign_Buttons/Sing_Buttons';
+import LoginForm from './LoginForm/LoginForm';
+import Logo from './Logo/Logo';
 
 export default function LoginPage() {
-    const [sing_up, setSignUp] = useState(true)
-
-    const [email, setEmail] = useState("test")
-    const [password, setPassword] = useState("test")
 
     return (
         <Grid container component="div" height={600} >
@@ -20,24 +13,14 @@ export default function LoginPage() {
                     p: 1,
                     margin: 'auto',
                     maxWidth: 500,
-                    maxHeight: 340,
+                    maxHeight: 380,
                     flexGrow: 3,
                     backgroundColor: (theme) =>
                         theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                 }}
             >
-                <LogoField sing_up={sing_up} />
-                <LoginField sing_up={sing_up}
-                    email={email}
-                    password={password}
-                    setEmail={setEmail}
-                    setPassword={setPassword} />
-                {/* <SingButtons sing_up={sing_up}
-                    email={email}
-                    password={password}
-                    setSignUp={setSignUp}
-                    setEmail={setEmail}
-                    setPassword={setPassword} /> */}
+                <Logo />
+                <LoginForm/>
 
             </Paper>
         </Grid>
