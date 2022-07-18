@@ -8,6 +8,13 @@ import { useState, useEffect } from 'react';
 //  https://short-url-back-end.herokuapp.com
 
 function App() {
+  try{
+    console.log(process.env)
+    console.log(process.env.local_api)
+    console.log(process.env.heroku_api)
+  }
+  catch(e){
+  }
 
   const [db, getBd] = useState('')
 
