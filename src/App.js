@@ -10,8 +10,8 @@ import { useState, useEffect } from 'react';
 function App() {
   try{
     console.log(process.env)
-    console.log(process.env.local_api)
-    console.log(process.env.heroku_api)
+    console.log(process.env.REACT_APP_LOCAL_API)
+    console.log(process.env.REACT_APP_HEROKU_API)
   }
   catch(e){
   }
