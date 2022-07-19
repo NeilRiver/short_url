@@ -10,11 +10,13 @@ import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from 'react-redux';
 import { addEntriesAsync, showBackdrop } from 'redux/slices/headAppSlice';
 
+let URL = (process.env.REACT_APP_LOCAL_API && process.env.REACT_APP_HEROKU_API) ? process.env.REACT_APP_HEROKU_API : process.env.REACT_APP_LOCAL_API
+
 export default function Login(prop) {
 
     const create_object_login = async (form_data) => {
         dispatch(showBackdrop())
-        let response = await fetch(`https://short-url-back-end.herokuapp.com/${(sign_up) ? "login" : "create_user"}`, {
+        let response = await fetch(`${URL}/${(sign_up) ? "login" : "create_user"}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -7,23 +7,15 @@ import { useState, useEffect } from 'react';
 //  http://localhost:3001
 //  https://short-url-back-end.herokuapp.com
 
+let URL = (process.env.REACT_APP_LOCAL_API && process.env.REACT_APP_HEROKU_API) ? process.env.REACT_APP_HEROKU_API : process.env.REACT_APP_LOCAL_API
+
 function App() {
-  try{
-    console.log(process.env)
-    console.log(process.env.REACT_APP_LOCAL_API)
-    console.log(process.env.REACT_APP_HEROKU_API)
-  }
-  catch(e){
-  }
-
   const [db, getBd] = useState('')
-
   const get_data_from_db = async () => {
     try {
-      let response = await fetch('https://short-url-back-end.herokuapp.com/users')
+      let response = await fetch(URL+'/users')
       let data = await response.json();
       getBd(data)
-      console.log(data)
     }
     catch (e) {
       console.log(e)
@@ -52,7 +44,7 @@ function App() {
         <br></br>
       </div>
       <br></br>
-      <button onClick={() => fetch('https://short-url-back-end.herokuapp.com/delete_by_range_id')}>Delete form DB all users</button>
+      <button onClick={() => fetch(URL+'/delete_by_range_id')}>Delete form DB all users</button>
     </div>
   );
 }
